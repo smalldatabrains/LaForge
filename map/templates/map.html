@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+	<title>Mace 4.0</title>
+	<meta charset="utf-8"/>
+	<!--Embed Roboto font from Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<script type="text/javascript" src="../static/jsplumb/jsplumb.min.js "></script>
+	<script type="text/javascript" src="../static/jquery/jquery-3.2.1.js"></script>
+	<script type="text/javascript" src="../static/jquery/jquery-ui-1.12.1/jquery-ui.js"></script>
+	{% load staticfiles %}
+	<link rel='stylesheet' href="{% static 'bootstrap/bootstrap.min.css' %}" type='text/css' />
+	<link rel='stylesheet' href="{% static 'css/custom.css' %}" type='text/css' />
+	<script type="text/javascript" src="{% static 'jsplumb/jsplumb.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'jquery/jquery-3.2.1.js' %}"></script>
+	<script type="text/javascript" src="{% static 'jquery/jquery-ui-1.12.1/jquery-ui.js' %}"></script>
+</head>
+<body>
+{% include "nav.html" %}
+
+	<form name="map" method="POST">{% csrf_token %}
+		<button type="button" id="saveProcess">Save</button>
+		<input type="text" placeholder="Name of machine" id="item">
+		<button type="button" id="addMachine">Add</button>
+	</form>	
+	<div id="diagramContainer">
+		
+	</div>	
+	<script>
+		jsPlumb.setContainer(document.getElementById("diagramContainer"));
+		var csrftoken = '{{ csrf_token }}';
+		console.log(csrftoken);
+		
+		var carte="{{ carte.process|escapejs }}";
+		document.getElementById('diagramContainer').innerHTML += carte;
+
+		var common={
+			isSource:true,
+			isTarget:true,
+			maxConnections: -1
+		}
+
+		var flowChart={}
+		var connectionJson="{{ carte.connections|escapejs }}";
+		var nodesJson="{{ carte.nodes|escapejs }}"
+		/*console.log(nodesJson);*/
+
+		jsPlumb.ready(function () {
+		window.onload = function () { 
+		function repositionElement(id, posX, posY)
+    	{
+    	
+    	/*console.log("adding endpoints");
+    	console.log(id);*/
+        $('#' + id).css('left', posX);
+        $('#' + id).css('top', posY);
+        jsPlumb.addEndpoint($('#' + id),{anchors:["Right"]},common);
+		jsPlumb.addEndpoint($('#' + id),{anchors:["Left"]},common);
+		/*console.log("endpoints added");*/
+    	}
+
+		if (connectionJson && nodesJson){
+			var nodes=JSON.parse(nodesJson);
+			$.each(nodes,function(index,elem){
+				repositionElement(elem.blockId,elem.positionX,elem.positionY);
+			})
+			/*console.log("adding connections");*/
+			var connections=JSON.parse(connectionJson);
+			/*console.log(connections);*/
+			$.each(connections, function( index, elem ) {
+				console.log(elem.anchors);
+				jsPlumb.connect({
+					source: elem.pageSourceId,
+					target: elem.pageTargetId,
+					anchors: elem.anchors
+			
+				});
+			});
+		}
+		}
+		});
+
+		var categoryList="{{ categories|escapejs }}";
+		/*console.log(categoryList);*/
+		categoryList = categoryList.replace(/[\n\t/'\[\]]+/g,"").split(',');
+
+		var user="{{ user.username }}";
+
+		$('.date').each(function(){
+    		$(this).datepicker();
+		});
+		
+	</script>
+	
+</body>
+
+{% load staticfiles %}
+
+<script type="text/javascript" src="{% static 'js/map.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/addmaintenance.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/saveprocess.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/changecategory.js' %}"></script>
+
+
+</html>
+
+
+
+
+

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+	<title>Mace 4.0</title>
+	<meta charset="utf-8"/>
+	<!--Embed Roboto font from Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	{% load staticfiles %}
+	<link rel='stylesheet' href="{% static 'bootstrap/bootstrap.min.css' %}" type='text/css' />
+	<link rel='stylesheet' href="{% static 'css/custom.css' %}" type='text/css' />
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+</head>
+
+{% include "nav.html" %}
+
+<body>
+	
+<h1>About</h1>
+
+LaForge : Predictive Maintenance Software 1.0 (2017)
+
+<h2>1.Purpose</h2>
+<p>
+Purpose of this software is to help maintenance team and manager to monitor their performance and to have a global overview of their machines. 
+When enough data is saved in database, the software will attempt to make a prediction of which machine could experience a breakdown in a near future and share this information with the team in order to anticipate any severe production stop.
+</p>
+<h2>2.User manual</h2>
+	<h3>a.Add New Machine</h3>
+
+	<img src="/static/images/newmachine.png">
+	<p>
+
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi auctor finibus metus sit amet consectetur. Fusce viverra est id tempor lobortis. Sed ultrices nibh sem, eu vehicula dolor hendrerit ut. Pellentesque purus felis, bibendum at eleifend a, porttitor sit amet mi. In ut quam tincidunt, elementum mauris a, tristique dolor. Pellentesque feugiat odio sollicitudin quam scelerisque, id malesuada tellus congue. Duis facilisis ante nec leo lobortis molestie. Integer non quam sit amet tellus varius porta. Fusce et risus suscipit, pulvinar tellus sit amet, accumsan lacus. Fusce tristique tellus quis lorem pretium malesuada. Praesent volutpat vulputate orci quis pretium. Nullam maximus ipsum interdum, semper ante vitae, efficitur ante. 
+	</p>
+	<h3>b.Design your Process</h3>
+	<img src="/static/images/addmachine.png">
+	<p>
+	Vestibulum sollicitudin quis quam a consequat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec facilisis laoreet neque a volutpat. Curabitur sit amet arcu nec augue convallis rhoncus. Phasellus molestie erat quis eros elementum, eget malesuada quam blandit. Nullam cursus interdum placerat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas in odio rhoncus, imperdiet turpis in, euismod risus.
+
+	</p>
+
+	<img src="/static/images/map.png">
+
+	</p>
+	<h3>c.Update maintenance data</h3>
+	<p>
+	Nulla eu tortor volutpat, efficitur leo ac, semper tortor. Donec gravida aliquam leo quis sagittis. Nam ac accumsan justo. Fusce sed risus justo. Donec a arcu rhoncus, sollicitudin ex a, tincidunt urna. Praesent porta vehicula ex vel viverra. Sed sit amet finibus turpis, in mattis leo.
+
+	Vestibulum lacinia, arcu non scelerisque pharetra, tellus ligula luctus odio, at aliquam nibh justo in leo. Curabitur vel varius odio, eget sagittis nibh. Phasellus consectetur tempor risus eget lacinia. Curabitur nec efficitur mi. Ut velit nibh, molestie eget nunc eu, convallis ultrices mi. Nunc nec ante nunc. Cras interdum gravida massa, eu lacinia augue imperdiet ac. Quisque rhoncus efficitur ipsum. Pellentesque vestibulum condimentum tincidunt. Cras vitae velit non eros imperdiet dictum. Maecenas posuere, sem non pretium blandit, sem diam placerat tellus, in rhoncus nisi ipsum quis sem. Maecenas eu velit diam. Cras ultrices tortor sit amet rhoncus consequat. Nulla eget auctor augue. 
+	</p>
+	<h3>d. Prediction</h3>
+	<p>
+	A model is being created from the data input during the use of the software. For each spare parts the model will try to predict the life duration left before any problem occurs. Prediction is made in days and is here to help you to avoid production issues. You should maintain spare part before their date of expiration. If a spare part broke before the date predicted then you should input maintenance data and the model will be automaticaly updated.
+	</p>
+
+<h2>3.Legal</h2>
+<p></p>
+<h2>4.TradeMark</h2>
+
+{% load staticfiles %}
+<script type="text/javascript" src="{% static 'jquery/jquery-3.2.1.js' %}"></script>
+<script type="text/javascript" src="{% static 'jquery/jquery-ui-1.12.1/jquery-ui.js' %}"></script>
+<script type="text/javascript" src="{% static 'jsplumb/jsplumb.min.js' %}"></script>
+
+
+</body>
+
+</html>
+
+
+
+
+

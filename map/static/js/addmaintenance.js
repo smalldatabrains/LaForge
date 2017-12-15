@@ -1,0 +1,20 @@
+$(document).on('submit','#addmaintenanceform',function(e){
+	e.preventDefault();
+	$.ajax({
+		type:'POST',
+		url:'/map/addmaintenance/',
+		data:{
+			date_start:$('#datestart').val(),
+			date_end:$('#dateend').val(),
+			technician:$('#technician').val(),
+			machine:$('#name').val(),
+			spare_part:$('#spare').val(),
+			detail:$('#detail').val(),
+			csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+		},
+		success:function(){
+			alert("Maintenance added")
+			document.getElementById("addmaintenanceform").reset();
+		}
+	})
+})

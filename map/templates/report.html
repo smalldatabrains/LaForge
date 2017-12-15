@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+	<title>Mace 4.0</title>
+	<meta charset="utf-8"/>
+	<!--Embed Roboto font from Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	{% load staticfiles %}
+	<link rel='stylesheet' href="{% static 'bootstrap/bootstrap.min.css' %}" type='text/css' />
+	<link rel='stylesheet' href="{% static 'css/custom.css' %}" type='text/css' />
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+	<script type="text/javascript" src="{% static 'chart/Chart.js' %}"></script>
+
+</head>
+
+{% include "nav.html" %}
+
+<body>
+	
+<h1>Report</h1>
+<button onclick="exportTopdf()">Print Report</button>
+<script>
+var dates="{{ dates|escapejs}}";
+console.log("dates",dates);
+var maintenances="{{ maintenances|escapejs }}";
+</script>
+<div id="content">
+<h2>1. Maintenance Delivery</h2>
+<canvas id="maintenanceTime" width="400" height="400"></canvas>
+<script>
+	var ctx = document.getElementById("maintenanceTime").getContext('2d');
+	var myChart = new Chart(ctx, {
+    	type: 'bar',
+    	data: {
+        	labels: ["ff","ffg","frge","po"],
+        	datasets: [{
+            	label: '# of interventions',
+            	data: [12, 19, 3, 5, 2, 3],
+        	}]
+    	},
+    	options: {
+    		responsive:false,
+        	}
+    	}
+	);
+</script>
+<h2>2. Maintenance Quality</h2>
+<canvas id="maintenanceQuality" width="400" height="400"></canvas>
+<h2>3. Equipment Reliability</h2>
+<canvas id="reliability" width="400" height="400"></canvas>
+<h2>4. Operational Risk</h2>
+<canvas id="risk" width="400" height="400"></canvas>
+<h2>5. Maintenance Resource Usage</h2>
+<canvas id="resource" width="400" height="400"></canvas>
+<h2>6. Maintenance Cost</h2>
+<canvas id="cost" width="400" height="400"></canvas>
+</div>
+
+{% load staticfiles %}
+<script type="text/javascript" src="{% static 'jquery/jquery-3.2.1.js' %}"></script>
+<script type="text/javascript" src="{% static 'jquery/jquery-ui-1.12.1/jquery-ui.js' %}"></script>
+<script type="text/javascript" src="{% static 'jsplumb/jsplumb.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/reporting.js' %}"></script>
+
+
+</body>
+
+</html>
+
+
+
+
+

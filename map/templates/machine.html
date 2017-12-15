@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+	<title>Mace 4.0</title>
+	<meta charset="utf-8"/>
+	<!--Embed Roboto font from Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	{% load staticfiles %}
+	<link rel='stylesheet' href="{% static 'bootstrap/bootstrap.min.css' %}" type='text/css' />
+	<link rel='stylesheet' href="{% static 'css/custom.css' %}" type='text/css' />
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+</head>
+
+{% include "nav.html" %}
+
+<body>
+	
+<h1>Add a new machine</h1>
+<!-- Form to add a new machine -->
+
+    <form id="addmachineform" method="POST" enctype="multipart/form-data">{% csrf_token %}
+		
+		<input type="text" class="form-left" placeholder="Add new spare" id="spare">
+		<button type="button" class="form-left" id="addSpare">Add</button>
+    	
+    	{{ form.as_ul }}
+    	<button type="submit" class="save btn btn-default">Save</button>
+			
+    </form>   
+
+{% block content %}
+
+<!-- List of registered machine in DB -->
+<p>
+<h1>Registered Machines</h1>
+<table class="table table-striped table-hover">
+	<tr>
+	<th>Category</th>
+	<th>Manufacturer</th>
+	<th>Picture</th>
+	<th>Spare Part</th>
+	<th>Actions</th>
+	</tr>
+{% for machine in machines %}
+	<tr>
+	<td id="{{machine}}">{{machine.category}}</td>
+	<td>{{machine.supplier}}</td>
+	<td><img src="{{MEDIA_URL}}{{machine.picture}}" width=100 height=100></td>
+	<td>
+		{% for sparepart in machine.sparepart.all %}
+			{{sparepart}}<br/>
+		{% endfor %}
+	</td>
+	<td><button class="delete">delete</button><button class="edit">edit</button></td>
+	</tr>		
+{% endfor %}
+</table>
+</p>
+
+{% endblock %}
+
+{% load staticfiles %}
+<script type="text/javascript" src="{% static 'jquery/jquery-3.2.1.js' %}"></script>
+<script type="text/javascript" src="{% static 'jquery/jquery-ui-1.12.1/jquery-ui.js' %}"></script>
+<script type="text/javascript" src="{% static 'jsplumb/jsplumb.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/machine.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/addmachine.js' %}"></script>
+
+
+</body>
+
+</html>
+
+
+
+
+
