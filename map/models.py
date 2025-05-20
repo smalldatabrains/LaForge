@@ -10,9 +10,9 @@ class MachineCategory(models.Model):
     category=models.CharField(max_length=30)
     supplier=models.CharField(max_length=30)
     picture=models.ImageField()
-    sparepart=models.ManyToManyField(SparePart)
+    sparePart=models.ManyToManyField(SparePart, related_name='machine_categories')
     def __str__(self):
-    	return self.category
+        return self.category
 
 
 class Maintenance(models.Model):

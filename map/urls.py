@@ -1,14 +1,13 @@
-from django.conf.urls import url
+from django.urls import path
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.map,name='map'),
-    url(r'^machine/$', views.machine,name='machine'),
-    url(r'^about/$', views.about,name='about'),
-    url(r'^history/$', views.history,name='history'),
-    url(r'^report/$', views.report,name='report'),
-    url(r'^addmaintenance/$', views.addmaintenance,name='addmaintenance'),
-    url(r'^addmachine/$', views.addmachine,name='addmachine'),
-    url(r'^saveprocess/$', views.saveprocess,name='saveprocess'),
-    
+    path('', views.map, name='map'),
+    path('machine/', views.machine, name='machine'),
+    path('about/', views.about, name='about'),
+    path('history/', views.history, name='history'),
+    path('report/', views.report, name='report'),
+    path('addmaintenance/', views.addmaintenance, name='addmaintenance'),
+    path('addmachine/', views.addmachine, name='addmachine'),
+    path('saveprocess/', views.saveprocess, name='saveprocess'),
 ]
